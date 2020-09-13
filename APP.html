@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Etiquetas <meta> obligatorias para Bootstrap -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Enlazando el CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <title>AGRO DECPERS</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark container-fluid">
+      <a  class="navbar-brand  text-white"  href="#">DECPERS</a>
+      <button class=" navbar-toggler text-white"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent"  aria-controls="navbarSupportedContent" aria-expanded="false"aria-label="Toggle  navigation">
+        <span class=" navbar-toggler-icon">
+        </span>
+      </button>
+      <div class="collapse  navbar-collapse"  id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a  class="nav-link text-center"  href="#">¡Bienvenido a nuestra comunidad!
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link text-center"  href="#">
+              AGRO-VENTAS
+            </a>          
+          </li>
+        </ul>
+      </div>
+    </nav>    
+
+    <!-- Código del formulario completo -->   
+    <div style="width: 18rem;" class="mt-3 container-fluid text-center card d-flex"><div class="mt-3 d-flex justify-content-center bg-success text-white">
+      <b><label class="card-title " style="margin-top:.5rem;">Calculadora Agrícola</label></b> 
+    </div>
+    <hr>
+    <div class="">
+      <label>Peso Bruto (kg)</label>
+      <input type="number" class="form-control" id="caja1" 
+      placeholder="peso bruto" disabled="true">
+    </div>
+    <div class="" >
+      <label >Peso Camión (kg)</label>
+      <input type="number" class="form-control" id="caja2" placeholder="peso camión" disabled="true">
+    </div>
+    <div class="form-group" >
+      <label for="validation02">Libras por saco</label>
+      <input type="number" placeholder="peso libras" id="caja3" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" disabled="true" >
+    </div>
+    <div class="form-group d-flex d-flex justify-content-between" >
+      <button  id="btn1" class="btn btn-success btn-md">Habilitar</button> 
+      <button  id="clean" class=" ml-auto btn btn-warning btn-md">Limpiar</button>       
+    </div>
+    <hr>
+    <div id="txt" class="container text-center alert alert-info d-none " role="alert">
+    </div>
+    <div id="txt2" class="container text-center alert alert-info d-none" role="alert"> 
+    </div>
+    <div id="contVenta" class="container-fluid d-none">
+      <hr>
+      <span id="Precio" Class="text-dark">Ingrese precio</span>
+      <input value="0" type="number" id="inVenta" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control">
+      <button  id="btnVenta" class="mt-3 ml-auto btn btn-dark btn-md mb-3">Total</button>
+    </div>
+  </div>
+  <footer class="page-footer font-small blue">   
+    <!-- Copyright --> 
+    <div class="mt-3 footer-copyright text-center py-3">
+      © 2020 Copyright: 
+      <a href="#"> Decpers</a> 
+    </div> 
+    <!-- Copyright -->      
+  </footer>
+</div>
+<script>
+  window.addEventListener("load", iniciar, false); 
+
+  function iniciar() { 
+    /*--Asignammos eventos click a los botones--*/
+    document.getElementById("btn1").addEventListener("click", clickBoton, false);
+    document.getElementById("clean").addEventListener("click", resetAll, false);
+    document.getElementById("btnVenta").addEventListener("click", CalVenta, false);
+
+    /*--Función que calcula el precio de venta*/
+    function CalVenta(){
+      var input1 = document.getElementById("caja1");
+      var input2 = document.getElementById("caja2");
+      var input3 = document.getElementById("caja3");
+      var nVenta = document.getElementById("inVenta");
+      var resObtenido = ((input1.value-input2.value)*2.2)/input3.value;
+      var resultado2 = Math.trunc(resObtenido*100)/100;
+      var totalTrunc=Math.trunc(nVenta.value*resultado2*100)/100;
+      var totalVenta = document.getElementById("txt2");
+      totalVenta.innerHTML = "En "+resultado2+" sacos a "+nVenta.value+" dólares son "+totalTrunc+" dólares";
+      totalVenta.classList.remove("d-none");
+    }
+    /*--Función que calcula el total de sacos--*/
+    function clickBoton(){
+      var input1 = document.getElementById("caja1");
+      var input2 = document.getElementById("caja2");
+      var input3 = document.getElementById("caja3");
+      var btn = document.getElementById("btn1");
+      var show = document.getElementById("txt");
+      var show1 = document.getElementById("txt2");
+      var show2 = document.getElementById("contVenta");
+
+      show.classList.add('d-none');
+      show1.classList.add('d-none');
+      show2.classList.add('d-none');
+
+
+      if(btn.innerHTML == "Habilitar"){
+        btn.innerHTML = "Calcular";
+        btn.classList.remove("btn-success");
+        btn.classList.add("btn-primary");
+        input1.disabled=false;
+        input2.disabled=false;
+        input3.disabled=false;
+
+      }
+
+      else
+      {
+        if(input1.value =="" && input2.value=="" && input3.value =="")
+        {
+          input1.classList.add("is-invalid");
+          input2.classList.add("is-invalid");
+          input3.classList.add("is-invalid");
+          show.innerHTML="Complete todos los campos";
+          show.classList.remove("d-none");
+          show.classList.add("alert-danger");
+          input1.focus();
+        }
+        else
+        {
+
+
+
+          if(input1.value == "")
+          {
+            input1.classList.add("is-invalid");
+            show.innerHTML="Complete todos los campos";
+            show.classList.remove("d-none");
+            show.classList.add("alert-danger");
+            input1.focus();
+
+            if(input2.value==""){
+              input2.classList.add("is-invalid");
+              input3.classList.add("is-valid");
+              show.innerHTML="Complete todos los campos";
+              show.classList.remove("d-none");
+              show.classList.add("alert-danger");
+
+            }
+            else{
+              input2.classList.add("is-valid");
+              input2.classList.remove("is-invalid");
+              show.innerHTML="Complete todos los campos";
+              show.classList.remove("d-none");
+              show.classList.add("alert-danger");
+              if(input3.value==""){
+                input3.classList.add("is-invalid");
+              }
+              else{
+                input3.classList.add("is-valid");
+              }
+            }
+          }
+          else{
+            input1.classList.add("is-valid");
+            input1.classList.remove("is-invalid");
+            if(input2.value == ""){
+              input2.classList.add("is-invalid");
+              show.innerHTML="Complete todos los campos";
+              show.classList.remove("d-none");
+              show.classList.add("alert-danger");
+              input2.focus();
+
+              if(input3.value==""){
+                input3.classList.add("is-invalid");
+                show.innerHTML="Complete todos los campos";
+                show.classList.remove("d-none");
+                show.classList.add("alert-danger");
+                input2.focus();
+              }else{
+                input3.classList.remove("is-invalid");
+                input3.classList.add("is-valid");
+
+              }
+
+            }
+
+            else{
+              input2.classList.remove("is-invalid");
+              input2.classList.add("is-valid");
+              if(input3.value==""){
+                input3.classList.add("is-invalid");
+                show.innerHTML="Complete todos los campos";
+                show.classList.remove("d-none");
+                show.classList.add("alert-danger");
+                input3.focus();
+              }
+              else{
+                var oculto = document.getElementById("contVenta");
+                oculto.classList.remove("d-none");
+                var resObtenido = ((input1.value-input2.value)*2.2)/input3.value
+                var resultado = Math.trunc(resObtenido*100)/100;
+                if(resultado > 0)
+                {
+
+                  input1.classList.remove("is-invalid");
+                  input2.classList.remove("is-invalid");
+                  input3.classList.remove("is-invalid");
+                  input3.classList.add("is-valid");
+                  show.classList.remove("d-none");
+                  show.classList.remove("alert-danger");
+                  show.innerHTML ="Respuesta: Son "+resultado+" sacos";
+                  btn.classList.remove("btn-primary");
+                  btn.classList.add("btn-success");
+                  btn.innerHTML="Habilitar";
+                  input1.disabled=true;
+                  input2.disabled=true;
+                  input3.disabled=true;
+                  var nVenta = document.getElementById("inVenta");
+                  var resObtenido = ((input1.value-input2.value)*2.2)/input3.value;
+                  var resultado2 = Math.trunc(resObtenido*100)/100;
+                  var totalTrunc=Math.trunc(nVenta.value*resultado2*100)/100;
+                  var totalVenta = document.getElementById("txt2");
+                  totalVenta.innerHTML = "En "+resultado2+" sacos a "+nVenta.value+" dólares son "+totalTrunc+" dólares";
+                  totalVenta.classList.remove("d-none");
+
+
+
+
+                }
+                else{
+                  input1.focus();
+                  input1.classList.add("is-invalid");
+                  show.innerHTML="Peso bruto es menor que el peso del camión "
+                  show.classList.remove("d-none");
+                  show.classList.add("alert-danger");
+                  input2.classList.remove("is-invalid");
+                  input3.classList.remove("is-invalid");
+                  input2.classList.add("is-valid");
+                  input3.classList.add("is-valid");
+                  var cajaOculta = document.getElementById("contVenta");
+                  cajaOculta.classList.add("d-none");
+                  var precio = document.getElementById("inVenta");
+                  precio.value="";
+                  var totalVenta = document.getElementById("txt2");
+                  totalVenta.classList.add("d-none");
+                }
+              }
+            }
+          }
+        }
+        /*--cierra primer else -- */
+      }
+      /*--Aqui cierra la funcion clickBoton--*/
+    } 
+
+    /*-------------------------------------------*/
+    /*-- Funcion para resetear todo --*/ 
+    function resetAll(evento) {
+      var input1 = document.getElementById("caja1");
+      var input2 = document.getElementById("caja2");
+      var input3 = document.getElementById("caja3");
+      var btn = document.getElementById("btn1");
+      var show = document.getElementById("txt");
+      input1.value="";
+      input2.value="";
+      input3.value="";
+      input1.disabled=true;
+      input2.disabled=true;
+      input3.disabled=true;
+      btn.innerHTML ="Habilitar";
+      input1.classList.remove("is-valid");
+      input1.classList.remove("is-invalid");
+      input2.classList.remove("is-valid");
+      input2.classList.remove("is-invalid");
+      input3.classList.remove("is-valid");
+      input3.classList.remove("is-invalid");
+      btn.classList.remove("btn-primary");
+      btn.classList.add("btn-success");
+      show.classList.remove("alert-danger");
+      show.classList.add("d-none");
+      show.innerHTML ="";
+      var cajaOculta = document.getElementById("contVenta");
+      cajaOculta.classList.add("d-none");
+      var precio = document.getElementById("inVenta");
+      precio.value="";
+      var totalVenta = document.getElementById("txt2");
+      totalVenta.classList.add("d-none");
+
+    }
+    /*---------------------------------------------------------
+    ----------Aqui cierra la función inicio ------------------*/
+
+  }
+
+</script>
+
+<!-- Opcional: enlazando el JavaScript de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
