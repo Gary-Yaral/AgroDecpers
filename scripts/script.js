@@ -3,20 +3,7 @@ $( function(){
   /**************************************************
   * Area de asignación de eventos y captura de Id's *
   ***************************************************/
-  let tamañoMaximo = 3;
-  let tamañoPrecio = 5;
 
-	document.getElementById("inputPesoLibras").oninput = function(){
-
-	 	if(this.value.length > tamañoMaximo ) this.value = this.value.slice(0, tamañoMaximo);
-
-	};
-
-	document.getElementById("inputPrecio").oninput = function(){
-
-	 	if(this.value.length > tamañoPrecio ) this.value = this.value.slice(0, tamañoPrecio);
-
-	}
   
   $("#botonHabilitar").click(calcularSacos);
   $("#limpiarTodo").click(resetearTodo);
@@ -47,6 +34,20 @@ $( function(){
     if(btnCalcularSacos.html() == "Habilitar"){
 
       habilitarTodo();
+      let tamañoMaximo = 3;
+      let tamañoPrecio = 5;
+
+      document.getElementById("inputPesoLibras").oninput = function(){
+
+	if(this.value.length > tamañoMaximo ) this.value = this.value.slice(0, tamañoMaximo);
+
+      };
+
+      document.getElementById("inputPrecio").oninput = function(){
+
+	if(this.value.length > tamañoPrecio ) this.value = this.value.slice(0, tamañoPrecio);
+
+      };
 
     }
 
