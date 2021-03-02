@@ -28,5 +28,6 @@ En esta interfaz se debe debloquear para poder tener acceso a los campos.
 
 
 <h3>AVISO</h3>
-Esta aplicación no es de uso comercial.
+Esta aplicación no es de uso comercial:
+
 >*"Licencia Free"*
