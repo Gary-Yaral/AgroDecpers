@@ -1,6 +1,6 @@
 <h1>Agro Decpers</h1>
 <h3>Descripción</h3>
-Es una aplicación creada para que los agricultores que tengan dificultades con el cálculo correcto de los sacos (o sacas) generados al momento de llevar su producto en camiones y pesarlos en una báscula de piladora.
+Es una aplicación creada para los agricultores que tengan dificultades con el cálculo correcto de los sacos (o sacas) generados al momento de llevar su producto en camiones y pesarlos en una báscula de piladora, puedan saber exactamente cuántos sacos está vendiendo.
 
 ![](https://github.com/decpers/AgroDecpers/blob/gh-pages/images/saca_de_gramineas.jpg)
 
@@ -31,4 +31,18 @@ En esta interfaz se debe desbloquear para poder tener acceso a los campos.
 Esta aplicación no es de uso comercial:
 
 `Licencia Free`
+
+<h3>Tecnologías que se usaron</h3>
+<br>
+`HTML`
+<br>
+`CSS`
+<br>
+`Javascript`
+<br>
+`JQuery`
+<br>
+`Bootstrap`
+<br>
+
 
