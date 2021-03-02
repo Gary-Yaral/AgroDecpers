@@ -23,11 +23,12 @@ Para poder hacer uso de ella puedes acceder a través del siguiente link <a href
 
 ![](https://github.com/decpers/AgroDecpers/blob/gh-pages/images/formulario_app.png)
 
-En esta interfaz se debe debloquear para poder tener acceso a los campos.
+En esta interfaz se debe desbloquear para poder tener acceso a los campos.
 
 
 
 <h3>AVISO</h3>
 Esta aplicación no es de uso comercial:
 
->*"Licencia Free"*
+`Licencia Free`
+
