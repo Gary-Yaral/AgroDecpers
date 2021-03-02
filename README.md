@@ -33,16 +33,12 @@ Esta aplicación no es de uso comercial:
 `Licencia Free`
 
 <h3>Tecnologías que se usaron</h3>
-<br>
+
 `HTML`
-<br>
 `CSS`
-<br>
 `Javascript`
-<br>
 `JQuery`
-<br>
 `Bootstrap`
-<br>
+
 
 
