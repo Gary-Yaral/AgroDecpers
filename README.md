@@ -4,7 +4,7 @@ Es una aplicación creada para que los agricultores que tengan dificultades con 
 
 <html>
 	<div style="display: flex; justify-content:center; width: 100%;">
-	<img src="images/saca_de_gramineas.jpg" alt="saca_de_gramineas">
+	<img style="width: 100px; height:100px;" src="images/saca_de_gramineas.jpg" alt="saca_de_gramineas">
 	</div>
 	<br>
 </html>
