@@ -211,10 +211,10 @@ $( function(){
   function calcularMontoTotal(){
     var sacosTotales = ((pesoBruto.val()-pesoCamion.val())*2.2)/pesoLibras.val();
     var sacosTotalesTruncados = Math.trunc(sacosTotales*100)/100;
-    var montoTotal=Math.trunc(inputPrecio.val()*sacosTotales*100)/100;
+    var montoTotal=inputPrecio.val()*sacosTotales;
     cajaMostrarMonto.removeClass("d-none");
     cajaIngresarPrecio.removeClass("d-none");
-    cajaMostrarMonto.html("En "+sacosTotalesTruncados+" sacos a "+inputPrecio.val()+" dólares son "+montoTotal+" dólares.");
+    cajaMostrarMonto.html("En "+sacosTotalesTruncados+" sacos a "+inputPrecio.val()+" dólares son "+montoTotal.toFixed(2)+" dólares.");
   };
 
   function quitarClasesValidoInvalido(){
